@@ -9,6 +9,7 @@ namespace Indian_States_Census_Analyser_Problem_Test
         static string InvalidFilePath = @"D:\Practice\C#\Indian States Census Analyser Problem\Indian States Census Analyser Problem\CSVFiles\IndiaStateCensusData.csv";
         static string InvalidCSVTypeFilePath = @"D:\Practice\C#\Indian States Census Analyser Problem\Indian States Census Analyser Problem\CSVFiles\CensorAnalyser.cs";
         static string InvalidDeliminatorFilePath = @"D:\Practice\C#\Indian States Census Analyser Problem\Indian States Census Analyser Problem\CSVFiles\IncorrectDeliminatorCensusFile.csv";
+        static string InvalidHeaderFilePath = @"D:\Practice\C#\Indian States Census Analyser Problem\Indian States Census Analyser Problem\CSVFiles\DelimiterIndiaStateCode.csv";
         CensorAnalyser censusAnalyser;
 
         [SetUp]
@@ -75,6 +76,23 @@ namespace Indian_States_Census_Analyser_Problem_Test
                 Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_DELIMITER, ex.type);
             }
         }
+
+       /* TC1.5:- Given the State Census CSV File when correct but csv header incorrect Returns a custom Exception.
+                  This is a Sad Test Case to verify if the header is incorrect then exception is raised.
+        */
+        [Test]
+        public void GivenIndianCensusCSVFile_WhenIncorrectHeadersInFile_ShouldThrowException()
+        {
+            try
+            {
+                censusAnalyser.LoadIndianCensusCSVData(InvalidHeaderFilePath);
+            }
+            catch (CensusAnalyserException ex)
+            {
+                Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_HEADERS, ex.type);
+            }
+        }
+
 
     }
 }
