@@ -10,7 +10,7 @@ namespace Indian_States_Census_Analyser_Problem
     {
         public enum ExceptionType
         {
-            FILE_NOT_FOUND, INCORRECT_FILE_TYPE, INVALID_DELIMITER, INVALID_HEADERS //exception type
+            FILE_NOT_FOUND, INCORRECT_FILE_TYPE, INVALID_DELIMITER, INVALID_HEADERS//exception type
         }
         public ExceptionType type;
 

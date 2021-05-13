@@ -7,7 +7,8 @@ namespace Indian_States_Census_Analyser_Problem_Test
     {
         static string CSVFilePath = @"D:\Practice\C#\Indian States Census Analyser Problem\Indian States Census Analyser Problem\CSVFiles\IndiaStateCensusData.csv";
         static string InvalidFilePath = @"D:\Practice\C#\Indian States Census Analyser Problem\Indian States Census Analyser Problem\CSVFiles\IndiaStateCensusData.csv";
-        static string InvalidCSVTypeFilePath = @"D:\Practice\C#\Indian States Census Analyser Problem\Indian States Census Analyser Problem\CensorAnalyser.cs";
+        static string InvalidCSVTypeFilePath = @"D:\Practice\C#\Indian States Census Analyser Problem\Indian States Census Analyser Problem\CSVFiles\CensorAnalyser.cs";
+        static string InvalidDeliminatorFilePath = @"D:\Practice\C#\Indian States Census Analyser Problem\Indian States Census Analyser Problem\CSVFiles\IncorrectDeliminatorCensusFile.csv";
         CensorAnalyser censusAnalyser;
 
         [SetUp]
@@ -56,6 +57,22 @@ namespace Indian_States_Census_Analyser_Problem_Test
             catch (CensusAnalyserException ex)
             {
                 Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_FILE_TYPE, ex.type);
+            }
+        }
+
+       /* TC1.4:- Given the State Census CSV File when correct but delimiter incorrect Returns a custom Exception.
+                  This is a Sad Test Case to verify if the file delimiter is incorrect then exception is raised.
+        */
+        [Test]
+        public void GivenIndianCensusCSVFile_WhenIncorrectDeliminatorInFile_ShouldThrowException()
+        {
+            try
+            {
+                censusAnalyser.LoadIndianCensusCSVData(InvalidDeliminatorFilePath);
+            }
+            catch (CensusAnalyserException ex)
+            {
+                Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_DELIMITER, ex.type);
             }
         }
 
