@@ -193,6 +193,23 @@ namespace Indian_States_Census_Analyser_Problem_Test
                 Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_DELIMITER, ex.type);
             }               
         }
-        
+        /* TC2.5:- Given the State Census CSV File when correct but csv header incorrect Returns a custom Exception.
+                   This is a Sad Test Case to verify if the header is incorrect then exception is raised.
+         */
+        [Test]
+        public void GivenStateCodesCSVFile_WhenIncorrectHeadersInFile_ShouldThrowException()
+        {
+            try
+            {           
+            CensorAnalyser censusAnalyser = (CensorAnalyser)csvFactory.getCensusAnalyser();
+            csvFileData = new CSVFileData(censusAnalyser.LoadCSVFileData);
+            var exception = Assert.Throws<CensusAnalyserException>(() => csvFileData(InvalidHeaderFilePath, StateCodeFileHeaders));
+            }
+            catch(CensusAnalyserException ex)
+            {
+                Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_HEADERS, ex.type);
+            }
+                
+        }
     }
 }
