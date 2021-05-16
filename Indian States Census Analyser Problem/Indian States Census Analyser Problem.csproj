@@ -70,6 +70,8 @@
   <ItemGroup>
     <Compile Include="CensorAnalyser.cs" />
     <Compile Include="CensusAnalyserException.cs" />
+    <Compile Include="CSVFactory.cs" />
+    <Compile Include="IndianCSVBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
