@@ -138,6 +138,25 @@ namespace Indian_States_Census_Analyser_Problem_Test
             Assert.AreEqual(37, totalNumberOfRecords.Count);
         }
 
+        /* TC2.2:- Given the State Census CSV File if incorrect Returns a custom Exception.
+                  This is a Sad Test Case to verify if the exception is raised. 
+        */
+        [Test]
+        public void GivenStateCodesCSVFile_WhenFileNotFound_ShouldThrowException()
+        {
+            try
+            {
+
+            CensorAnalyser censusAnalyser = (CensorAnalyser)csvFactory.getCensusAnalyser();
+            csvFileData = new CSVFileData(censusAnalyser.LoadCSVFileData);
+            var exception = Assert.Throws<CensusAnalyserException>(() => csvFileData(InvalidFilePath, StateCodeFileHeaders));
+
+            }
+            catch(CensusAnalyserException ex)
+            {           
+                Assert.AreEqual(CensusAnalyserException.ExceptionType.FILE_NOT_FOUND, ex.type);
+            }
+        }
        
     }
 }
